@@ -26,6 +26,7 @@ namespace Vidly.Controllers
             {
                 MembershipTypes = membershipTypes
             };
+
             return View("CustomerForm", viewModel);
         }
 
@@ -47,6 +48,7 @@ namespace Vidly.Controllers
             _context.SaveChanges();
             return RedirectToAction("index", "Customers");
         }
+
         public ViewResult Index()
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
@@ -83,6 +85,7 @@ namespace Vidly.Controllers
                 Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
+
             return View("CustomerForm", viewModel);
             
         }
