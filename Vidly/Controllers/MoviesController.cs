@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using Vidly.Models;
 using Vidly.ViewModel;
 
@@ -10,20 +11,34 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
         public ViewResult Index()
         {
-            var movies = GetMovies();
+            var movies = _context.Movies.Include(c => c.Genre).ToList();
 
             return View(movies);
         }
 
-        private IEnumerable<Movie> GetMovies()
+        protected override void Dispose(bool disposing)
         {
-            return new List<Movie>()
+            _context.Dispose();
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
             {
-                new Movie(){ Id=1, Name = "Shrek"},
-                new Movie(){Id=2, Name = "Wall-e"}
-            };
+                return HttpNotFound();
+            }
+
+            return View(movie);
         }
 
         //GET: Movies/Random
