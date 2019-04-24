@@ -5,9 +5,15 @@ namespace Vidly.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
+        [Required] [Display(Name = "E-Mail")] public string Email { get; set; }
+
         [Required]
-        [Display(Name = "E-Mail")]
-        public string Email { get; set; }
+        [Display(Name="Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Phone { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -25,12 +31,9 @@ namespace Vidly.Models
 
     public class VerifyCodeViewModel
     {
-        [Required]
-        public string Provider { get; set; }
+        [Required] public string Provider { get; set; }
 
-        [Required]
-        [Display(Name = "Code")]
-        public string Code { get; set; }
+        [Required] [Display(Name = "Code")] public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Diesen Browser merken?")]
@@ -41,9 +44,7 @@ namespace Vidly.Models
 
     public class ForgotViewModel
     {
-        [Required]
-        [Display(Name = "E-Mail")]
-        public string Email { get; set; }
+        [Required] [Display(Name = "E-Mail")] public string Email { get; set; }
     }
 
     public class LoginViewModel
@@ -58,12 +59,19 @@ namespace Vidly.Models
         [Display(Name = "Kennwort")]
         public string Password { get; set; }
 
-        [Display(Name = "Speichern?")]
-        public bool RememberMe { get; set; }
+        [Display(Name = "Speichern?")] public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
+        [Required]
+        [StringLength(50)]
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "E-Mail")]

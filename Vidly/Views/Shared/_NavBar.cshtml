@@ -17,11 +17,12 @@
             </span>*@
         </div>
         <div class="navbar-collapse ">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
-                    <li>@Html.ActionLink("Movies", "Index", "Movies")</li>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                <li>@Html.ActionLink("Movies", "Index", "Movies")</li>
                     
-                </ul>
+            </ul>
+            @Html.Partial("_LoginPartial")
             </div>
     </div>
 </div>
